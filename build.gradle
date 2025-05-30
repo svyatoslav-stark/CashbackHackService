@@ -2,6 +2,8 @@ plugins {
     id 'java'
 }
 
+apply plugin: 'jacoco'
+
 group 'ru.netology'
 version '1.0-SNAPSHOT'
 
@@ -10,9 +12,22 @@ repositories {
 }
 
 dependencies {
+    // JUnit4 dependencies
     testImplementation 'junit:junit:4.13'
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.10.2'
+
+    // JUnit5 (Jupiter) dependencies
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
 }
 
 test {
-    useJUnit()
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    reports {
+        html.required.set(true)
+    }
 }
