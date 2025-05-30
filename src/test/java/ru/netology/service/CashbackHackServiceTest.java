@@ -1,41 +1,36 @@
 package ru.netology.service;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class CashbackHackServiceTest {
     CashbackHackService service = new CashbackHackService();
 
     @Test
-    public void testRemain_ZeroAmount() {
+    public void testRemainZeroAmount() {
         int actual = service.remain(0);
-
         int expected = 1000;
-        Assert.assertEquals(actual, expected, "При нулевой сумме остаток должен составлять 1000");
-    }
+        Assert.assertEquals(expected, actual);
+}
 
     @Test
-    public void testRemain_ExactBoundary() {
+    public void testRemainExactBoundary() {
         int actual = service.remain(1000);
-
-        int expected = 1000;
-        Assert.assertEquals(actual, expected, "Для получения точной границы остаток должен составлять 1000");
+        int expected = 0; // Ошибка в сервисе: должно быть 0, а не 1000
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void testRemain_BelowBoundary() {
+    public void testRemainBelowBoundary() {
         int actual = service.remain(900);
-
         int expected = 100;
-        Assert.assertEquals(actual, expected, "Для суммы ниже установленной границы остаток должен составлять 100");
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void testRemain_AboveBoundary() {
-
+    public void testRemainAboveBoundary() {
         int actual = service.remain(1200);
-
         int expected = 800;
-        Assert.assertEquals(actual, expected, "Для суммы, превышающей границу, остаток должен составлять 800");
+        Assert.assertEquals(expected, actual);
     }
 }
