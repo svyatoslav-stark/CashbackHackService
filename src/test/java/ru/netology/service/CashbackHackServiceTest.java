@@ -18,8 +18,8 @@ public class CashbackHackServiceTest {
     public void testRemain_ExactBoundary() {
         int actual = service.remain(1000);
 
-        int expected = 1000;
-        Assert.assertEquals(actual, expected, "Для получения точной границы остаток должен составлять 1000");
+        int expected = 0;
+        Assert.assertEquals(actual, expected, "Для получения точной границы остаток должен составлять 0");
     }
 
     @Test
